@@ -9,9 +9,9 @@ int main()
 	int tsum=0;
 	int result=0;
 	int Parr[1000];
-//	cout<<"¸î¸íÀÌ ÁÙ¼­ÀÖ½À´Ï±î?"<<endl;
+//	cout<<"ëª‡ëª…ì´ ì¤„ì„œìˆìŠµë‹ˆê¹Œ?"<<endl;
 	cin>>PersonNum;
-//	cout<<"»ç¶÷¸¶´Ù °É¸®´Â »ç¶÷ ÀÔ·Â"<<endl;
+//	cout<<"ì‚¬ëŒë§ˆë‹¤ ê±¸ë¦¬ëŠ” ì‚¬ëŒ ì…ë ¥"<<endl;
 	for(vector<int>::size_type i=0;i<PersonNum;++i)
 	{
 		cin>>time;
