@@ -3,48 +3,49 @@ using namespace std;
 
 int main()
 {
-	char line[51]={};
+	char line[50]={};
+	int pmidx[50]={};
 	cin>>line;
-	int sum=0;
-	int strlength=strlen(line);
-	char checkplusidx[strlength]={};
-	char checkminusidx[strlength]={};
-	
-	int checking=0;
 	int num=0;
-	for(int i=0;i<strlength;++i)
-	{
-		if(line[i]=='+')
-		{
-			checkplusidx[num++]=(i+1)+'0';
-		}
-		if(line[i]=='-')
-		{
-			checking=i;
-			break;
-		}
-	}
-	int num2=0;
-	for(int i=checking;i<strlength;++i)
+	for(int i=0;i<strlen(line);++i)
 	{
 		if(line[i]=='+'||line[i]=='-')
 		{
-			checkminusidx[num2++]=(i+1)+'0';
+			pmidx[num++]=i;
 		}
 	}
-	sum=atoi(&line[0]);
-	
-	for(int i=0;i<strlen(checkplusidx);++i)
+//	for(int i=0;i<num;++i) num은 pmidx배열의 갯수 
+//		cout<<pmidx[i]<<" ";
+//	cout<<endl;
+	int firstminusidx=0; 
+	for(int i=0;i<strlen(line);++i)
 	{
-		sum+=atoi(&line[checkplusidx[i]-'0']);
+		if(line[i]=='-')
+		{
+			firstminusidx=i;
+		}
 	}
-	for(int i=0;i<strlen(checkminusidx);++i)
+//	cout<<firstminusidx;
+	int sum=atoi(&line[0]);
+	int ck=0;
+	for(int i=0;i<num;++i)
 	{
-		sum-=atoi(&line[checkminusidx[i]-'0']);
+		if(pmidx[i]==firstminusidx)
+		{
+			ck=	i; //2
+			break;
+		}
 	}
-	
-	cout<<sum<<endl;
-	
-	return 0;
 
+	for(int i=0;i<ck;++i)
+	{
+		sum+=atoi(&line[pmidx[i]]);
+	}
+	for(int i=ck;i<num;++i)
+	{
+		sum-=atoi(&line[pmidx[i]+1]);
+	}
+	cout<<sum;
+	return 0;
+	
 }
