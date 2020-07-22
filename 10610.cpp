@@ -3,37 +3,40 @@ using namespace std;
 
 int main()
 {
-	int N;
+	char N[100001]={0,};
 	cin>>N;
 	vector<int>v;
-
-	int len = 0;
-    int i = 1;
-    while (N > i) {	//ÀÚ¸´¼ö±¸ÇÏ±â 
-        i *= 10;
-        len++;
-    }
-	int num=len-1;
-	for(int i=0;i<len;++i) 
-	{
-		v.push_back(N/pow(10,(num)));
-		N-=v[i]*pow(10,(num));
-		--num;
-	}
+	int strlennum=strlen(N);
 	
+	for(int i=0;i<strlennum;++i)
+	{
+		v.push_back(N[i]-'0');
+	}
 //	for(vector<int>::size_type i=0;i<v.size();++i)
 //		cout<<v[i]<<" ";
 //	cout<<endl;
 	sort(v.begin(),v.end(),greater<int>());
-	int n=count(v.begin(),v.end(),0);
-	if(n==0) //0ÀÌ ÇÏ³ªÀÌ»óÁ¸ÀçÇÏ´ÂÁö °Ë»ç 
+	
+	int cnt=count(v.begin(),v.end(),0);
+//	cout<<"cnt: "<<cnt<<endl;
+	if(cnt==0) //0ì´ í•˜ë‚˜ì´ìƒì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬ 
 	{
 		cout<<"-1";
 		return 0;
 	}
-	else	//¿ø¼ÒµéÀÇ ÇÕÀÌ 3ÀÇ ¹è¼öÀÎÁö °Ë»ç 
+	else	//ì›ì†Œë“¤ì˜ í•©ì´ 3ì˜ ë°°ìˆ˜ì¸ì§€ ê²€ì‚¬ 
 	{
-		
+		int accnum=accumulate(v.begin(),v.end(),0);
+		if(accnum%3==0)
+		{
+			for(vector<int>::size_type i=0;i<v.size();++i)
+				cout<<v[i];
+		}
+		else
+		{
+			cout<<"-1";
+			return 0;
+		}
 	}
 	
 	return 0;
