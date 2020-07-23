@@ -3,47 +3,39 @@ using namespace std;
 
 int main()
 {
-	char line[50]={};
-	int pmidx[50]={};
+	char line[51]={0,};
+	int pidx[50]={0,};
+	int midx[50]={0,};
+	int pnum=0;
+	int mnum=0;
+	
 	cin>>line;
-	int num=0;
 	for(int i=0;i<strlen(line);++i)
 	{
-		if(line[i]=='+'||line[i]=='-')
+		if(line[i]=='+')
 		{
-			pmidx[num++]=i;
+			pidx[pnum++]=i+1;
+		}
+		else if(line[i]=='-')
+		{
+			for(;i<strlen(line);++i)
+			{
+				if(line[i]=='+'||line[i]=='-')
+				{
+					midx[mnum++]=i+1;
+				}
+			}
+			break;   
 		}
 	}
-//	for(int i=0;i<num;++i) num은 pmidx배열의 갯수 
-//		cout<<pmidx[i]<<" ";
-//	cout<<endl;
-	int firstminusidx=0; 
-	for(int i=0;i<strlen(line);++i)
-	{
-		if(line[i]=='-')
-		{
-			firstminusidx=i;
-		}
-	}
-//	cout<<firstminusidx;
 	int sum=atoi(&line[0]);
-	int ck=0;
-	for(int i=0;i<num;++i)
+	for(int i=0;i<pnum;++i)
 	{
-		if(pmidx[i]==firstminusidx)
-		{
-			ck=	i; //2
-			break;
-		}
+		sum+=atoi(&line[pidx[i]]);
 	}
-
-	for(int i=0;i<ck;++i)
+	for(int i=0;i<mnum;++i)
 	{
-		sum+=atoi(&line[pmidx[i]]);
-	}
-	for(int i=ck;i<num;++i)
-	{
-		sum-=atoi(&line[pmidx[i]+1]);
+		sum-=atoi(&line[midx[i]]);
 	}
 	cout<<sum;
 	return 0;
