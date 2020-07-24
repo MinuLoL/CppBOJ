@@ -16,7 +16,7 @@ int main()
 		cin>>kindofCoin;
 		v.push_back(kindofCoin);
 	}
-	sort(v.begin(),v.end(),greater<int>());//³»¸²Â÷¼ø Á¤·Ä ex>50000 10000 5000 1000 ....
+	sort(v.begin(),v.end(),greater<int>());//Â³Â»Â¸Â²Ã‚Ã·Â¼Ã¸ ÃÂ¤Â·Ã„ ex>50000 10000 5000 1000 ....
 
 	for(int i=0;i<v.size();++i)
 	{
