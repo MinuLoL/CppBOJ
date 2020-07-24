@@ -26,9 +26,9 @@ int main()
 		v.push_back(cnt);
 		cnt=0;
 	}
-	//ÀÌÁ¦ cntarr¹è¿­Áß¿¡ °¡Àå Å« ¼ö ±¸ÇÏ±â
+	//ì´ì œ cntarrë°°ì—´ì¤‘ì— ê°€ì¥ í° ìˆ˜ êµ¬í•˜ê¸°
 	vector<int>::iterator iter;
-	iter=min_element(v.begin(),v.end()); //max_element·Î ÃÖ¼Ò°ª°¡Áö´Â ¿ø¼Ò ½±°Ô Ã£À½
+	iter=min_element(v.begin(),v.end()); //max_elementë¡œ ìµœì†Œê°’ê°€ì§€ëŠ” ì›ì†Œ ì‰½ê²Œ ì°¾ìŒ
 	 
 	cout<<*iter;
 	return 0;	
