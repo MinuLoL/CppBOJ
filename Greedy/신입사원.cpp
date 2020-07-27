@@ -1,20 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 vector<pair<int,int> > v;
-vector<int> cntv; 
+vector<int> cntv;
 bool cmpfirst(const pair<int , int> &a, const pair<int , int> &b)
 {
-	return a.first>b.first;
+	return a.first<b.first;
 }
 
 int main()
 {
-	int T; //ÄÉÀÌ½º ¼ö 
-	int N; //Âü°¡ÀÚ ¼ö
+	int T; //ì¼€ì´ìŠ¤ ìˆ˜ 
+	int N; //ì°¸ê°€ì ìˆ˜
 	int cnt=0;  
 	int realcnt=0;
 	cin>>T;
-	
+	int stand=0;
+	int cmppivot=1;
 	for(int i=0;i<T;++i)
 	{
 		cin>>N;
@@ -24,32 +25,37 @@ int main()
 			cin>>fscore>>sscore;
 			v.push_back(make_pair(fscore,sscore));
 		}
-		//ÃÖ´ë Âü°¡ÀÚÀÎ¿ø¼ö ±¸ÇØ¾ß´ï
+		//ìµœëŒ€ ì°¸ê°€ìì¸ì›ìˆ˜ êµ¬í•´ì•¼ëŒ
 		sort(v.begin(),v.end(),cmpfirst);
-		 
-		for(int k=0;k<v.size();++k)
+		vector<int> vsecond;	
+
+
+		for(int i=0;i<v.size();++i) //ì •ë ¬ëœ ë’·ìë¦¬ ë°°ì—´ì…ë ¥ 
 		{
-//		 	for(int l=k+1;l<v.size();++l) //½Ã°£ÃÊ°ú!! ¹º°¡ count_if()ÇÔ¼ö·Î... 
-//		 	{
-//		 		if(v[k].second>=v[l].second)
-//		 		{
-//		 			cnt++;
-//		 			break; 
-//				}
-//			}
-
-
-			if(cnt==1)
-			{
-				realcnt++;	
-			}
-			cnt=0;
+			vsecond.push_back(v[i].second);
 		}
-//		cout<<v.size()-realcnt<<endl;  //ÀÌºÎºĞ¸¸ ¼öÁ¤(ÇØ°á¿Ï·á) 
-		cntv.push_back(v.size()-realcnt); 
+	
+		while(cmppivot<v.size())
+		{
+			if(vsecond[stand]<vsecond[cmppivot])
+			{
+				cnt++;
+				cmppivot++;
+			}
+			else if(vsecond[stand]>vsecond[cmppivot])
+			{
+				stand=cmppivot;
+				cmppivot++;
+			}
+		}	
+
+		cntv.push_back(v.size()-cnt); 
 		 
-		realcnt=0;
+		cnt=0;
+		stand=0;
+		cmppivot=1;
 		v.erase(v.begin(),v.end());
+		vsecond.erase(vsecond.begin(),vsecond.end());
 	}
 	for(int i=0;i<cntv.size();++i)
 	{
