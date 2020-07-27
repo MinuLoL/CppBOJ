@@ -47,11 +47,6 @@ int dp(int x)
 	}	
 }
 	
-//	if(x%3==2&&x%2!=0)return dp(x-1)+1;
-//	if(x%3==2&&x%2==0)return dp(x/2)+1; 
-//	if(x%3==1)return dp(x-1)+1; 
-//	if(x%3==0)return dp(x/3)+1;//3ÀÇ n½Â
-
 
 
 int main()
