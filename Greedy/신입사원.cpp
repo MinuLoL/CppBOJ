@@ -1,10 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 vector<pair<int,int> > v;
-vector<int> cntv; 
+vector<int> cntv;
 bool cmpfirst(const pair<int , int> &a, const pair<int , int> &b)
 {
-	return a.first>b.first;
+	return a.first<b.first;
 }
 
 int main()
@@ -14,7 +14,8 @@ int main()
 	int cnt=0;  
 	int realcnt=0;
 	cin>>T;
-	
+	int stand=0;
+	int cmppivot=1;
 	for(int i=0;i<T;++i)
 	{
 		cin>>N;
@@ -26,30 +27,35 @@ int main()
 		}
 		//최대 참가자인원수 구해야댐
 		sort(v.begin(),v.end(),cmpfirst);
-		 
-		for(int k=0;k<v.size();++k)
+		vector<int> vsecond;	
+
+
+		for(int i=0;i<v.size();++i) //정렬된 뒷자리 배열입력 
 		{
-//		 	for(int l=k+1;l<v.size();++l) //시간초과!! 뭔가 count_if()함수로... 
-//		 	{
-//		 		if(v[k].second>=v[l].second)
-//		 		{
-//		 			cnt++;
-//		 			break; 
-//				}
-//			}
-
-
-			if(cnt==1)
-			{
-				realcnt++;	
-			}
-			cnt=0;
+			vsecond.push_back(v[i].second);
 		}
-//		cout<<v.size()-realcnt<<endl;  //이부분만 수정(해결완료) 
-		cntv.push_back(v.size()-realcnt); 
+	
+		while(cmppivot<v.size())
+		{
+			if(vsecond[stand]<vsecond[cmppivot])
+			{
+				cnt++;
+				cmppivot++;
+			}
+			else if(vsecond[stand]>vsecond[cmppivot])
+			{
+				stand=cmppivot;
+				cmppivot++;
+			}
+		}	
+
+		cntv.push_back(v.size()-cnt); 
 		 
-		realcnt=0;
+		cnt=0;
+		stand=0;
+		cmppivot=1;
 		v.erase(v.begin(),v.end());
+		vsecond.erase(vsecond.begin(),vsecond.end());
 	}
 	for(int i=0;i<cntv.size();++i)
 	{
