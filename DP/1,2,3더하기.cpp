@@ -1,5 +1,43 @@
 #include<bits/stdc++.h>
 using namespace std;
+
+vector<int> v;
+int d[10000];
+int dp(int x)
+{
+	if(x<=0)return 0;
+	if(x==1)return 1;
+	if(x==2)return 2;
+	if(x==3)return 4;
+	
+	if(d[x]!=0)return d[x];
+	else
+	{
+		return d[x]=dp(x-1)+dp(x-2)+dp(x-3);
+	}
+}
+
+int main()
+{
+	int T,n;
+	cin>>T;
+	for(int i=0;i<T;++i)
+	{
+		cin>>n;
+		v.push_back(dp(n));
+		
+	}
+	for(int i=0;i<T;++i)
+	{
+		cout<<v[i]<<endl;
+	}
+}
+
+
+
+//DP를 이용하지 않은 코드
+#include<bits/stdc++.h>
+using namespace std;
 vector<int> v;
 vector<int> accv;
 int factorial(int num) //팩토리얼 함수
@@ -36,15 +74,7 @@ int main()
 				}
 			}
 		}	
-//	for(int i=0;i<nth;++i) //확인용
-//	{
-//		for(int j=0;j<3;++j)
-//		{
-//			cout<<arr[i][j];
-//		}
-//		cout<<endl;
-//	}
-//
+
 		vector<int> v;
 		int sum=0;
 		int mo=1;
