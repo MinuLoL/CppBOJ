@@ -9,6 +9,7 @@ int factorial(int num) //팩토리얼 함수
 	return num*factorial(num-1);
 }
 
+
 int main()
 {
 	int arr[20][3];
