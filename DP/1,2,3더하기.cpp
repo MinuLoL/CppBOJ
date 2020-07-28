@@ -2,7 +2,7 @@
 using namespace std;
 vector<int> v;
 vector<int> accv;
-int factorial(int num)
+int factorial(int num) //팩토리얼 함수
 {
 	if(num<=1)return 1;
 	
@@ -19,7 +19,7 @@ int main()
 	{
 		cin>>N;
 		int nth=0;
-		for(int i=0;i<(N/1+1);++i)
+		for(int i=0;i<(N/1+1);++i)    //x+2y+3z=N 을 성립하는 (x,y,z)구하기 (2차원배열)
 		{
 			for(int j=0;j<(N/2+1);++j)
 			{
@@ -35,7 +35,7 @@ int main()
 				}
 			}
 		}	
-//	for(int i=0;i<nth;++i)
+//	for(int i=0;i<nth;++i) //확인용
 //	{
 //		for(int j=0;j<3;++j)
 //		{
