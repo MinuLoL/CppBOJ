@@ -1,76 +1,59 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n;
-int step[300]={0,};
-//int d[10000];
-//
-//int dp(int x)
-//{
-//	if(x==1)return 1;
-//	if(x==2)return 2;
-//	if(x==3)return 2;
-//	if(x==4)return 4;
-//	if(d[x]!=0)return d[x];
-//	else
-//	{
-//		return d[x]=dp(x-2)+dp(x-3)+dp(x-4);
-//	}
-//}
+int step[301]={0,};
+
 int dp(int x)
 {
 	if(x==1)
 	{
-		return step[n-1];
+		return step[n];
 	}
-	if(n>2&&x==2)//이 부분 수정필요
+	else if(n>2&&x==2)
 	{
-		return step[n-1];
+		return step[n];
 	}
-	if(n==2&&x==2)
+	else if(n==2&&x==2)
 	{
-		return step[n-2]+step[n-1];
+		return step[n-1]+step[n];
 	}
-	if(x==3)
-	{
-		if((step[n-3]+step[n-1])>(step[n-2]+step[n-1]))
-			return step[n-3]+step[n-1];
-		else
-			return step[n-2]+step[n-1];
-	}
-	if(n==4&&x==4)
-	{
-		int a,b,c;
-		a=step[n-4]+step[n-2]+step[n-1];
-		b=step[n-3]+step[n-1];
-		c=step[n-4]+step[n-3]+step[n-1];
-		return max({a,b,c});
-	}
-	if(n>4&&x==4)
+	else if(x==3)
 	{
 		int a,b;
-		a=step[n-4]+step[n-2]+step[n-1];
-		b=step[n-3]+step[n-1];
-		return max({a,b});
+		a=step[n-2]+step[n];
+		b=step[n-1]+step[n];
+		return max(a,b);
+	}
+	else if(n>4&&x==4)
+	{
+		int a,b;
+		a=step[n-2]+step[n];
+		b=step[n-3]+step[n-1]+step[n];
+		return max(a,b);
+	}
+	else if(n==4&&x==4)
+	{
+		int a,b,c;
+		a=step[n-2]+step[n];
+		b=step[n-3]+step[n-1]+step[n];
+		c=step[n-3]+step[n-2]+step[n];
+		return max({a,b,c});
 	}
 	else
 	{
 		int e,f,g;
-		e=step[n-x+1]+dp(x-2);
-		f=step[n-x]+step[n-x+2]+dp(x-3);
-		g=step[n-x]+step[n-x+1]+step[n-x+3]+dp(x-4);
+		e=step[n-x+2]+dp(x-2);
+		f=step[n-x+1]+step[n-x+3]+dp(x-3);
+		g=step[n-x+1]+step[n-x+2]+step[n-x+4]+dp(x-4);
 		return max({e,f,g});
 	}
-	
 }
-
-
-
 int main()
 {
 
 	int num;
 	cin>>n;
-	for(int i=0;i<n;++i)
+	for(int i=1;i<=n;++i)
 	{
 		cin>>num;
 		step[i]=num;
