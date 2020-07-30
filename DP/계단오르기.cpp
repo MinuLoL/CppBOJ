@@ -2,28 +2,30 @@
 using namespace std;
 int n;
 int step[301]={0,};
-
+int d[301];
 int dp(int x)
 {
+	
 	if(x<1)return 0;
+	if(d[x]!=0)return d[x];
 	else if(x==1)
 	{
-		return step[n];
+		return d[x]=step[n];
 	}
 	else if(n>2&&x==2)
 	{
-		return step[n];
+		return d[x]=step[n];
 	}
 	else if(n==2&&x==2)
 	{
-		return step[n-1]+step[n];
+		return d[x]=step[n-1]+step[n];
 	}
 	else if(x==3)
 	{
 		int a,b;
 		a=step[n-2]+step[n];
 		b=step[n-1]+step[n];
-		return max(a,b);
+		return d[x]=max(a,b);
 	}
 	else if(n>4&&x==4)
 	{
@@ -31,7 +33,7 @@ int dp(int x)
 		a=step[n-2]+step[n];
 		b=step[n-3]+step[n-1]+step[n];
 
-		return max(a,b);
+		return d[x]=max(a,b);
 	}
 	else if(n==4&&x==4)
 	{
@@ -39,7 +41,7 @@ int dp(int x)
 		a=step[n-2]+step[n];
 		b=step[n-3]+step[n-1]+step[n];
 		c=step[n-3]+step[n-2]+step[n];
-		return max({a,b,c});
+		return d[x]=max({a,b,c});
 	}
 	else if(x>=5&&x==n)
 	{
@@ -47,7 +49,7 @@ int dp(int x)
 		e=step[n-x+2]+dp(x-2);
 		f=step[n-x+1]+step[n-x+3]+dp(x-3);
 		g=step[n-x+1]+step[n-x+2]+step[n-x+4]+dp(x-4);
-		return max({e,f,g});
+		return d[x]=max({e,f,g});
 	}
 	else if(x>=5&&x<n)
 	{
@@ -55,7 +57,7 @@ int dp(int x)
 		e=step[n-x+2]+dp(x-2);
 		f=step[n-x+1]+step[n-x+3]+dp(x-3);
 
-		return max(e,f);
+		return d[x]=max(e,f);
 	}
 }
 int main()
