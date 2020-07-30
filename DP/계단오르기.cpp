@@ -5,7 +5,8 @@ int step[301]={0,};
 
 int dp(int x)
 {
-	if(x==1)
+	if(x<1)return 0;
+	else if(x==1)
 	{
 		return step[n];
 	}
@@ -29,6 +30,7 @@ int dp(int x)
 		int a,b;
 		a=step[n-2]+step[n];
 		b=step[n-3]+step[n-1]+step[n];
+
 		return max(a,b);
 	}
 	else if(n==4&&x==4)
@@ -39,13 +41,21 @@ int dp(int x)
 		c=step[n-3]+step[n-2]+step[n];
 		return max({a,b,c});
 	}
-	else
+	else if(x>=5&&x==n)
 	{
 		int e,f,g;
 		e=step[n-x+2]+dp(x-2);
 		f=step[n-x+1]+step[n-x+3]+dp(x-3);
 		g=step[n-x+1]+step[n-x+2]+step[n-x+4]+dp(x-4);
 		return max({e,f,g});
+	}
+	else if(x>=5&&x<n)
+	{
+		int e,f;
+		e=step[n-x+2]+dp(x-2);
+		f=step[n-x+1]+step[n-x+3]+dp(x-3);
+
+		return max(e,f);
 	}
 }
 int main()
