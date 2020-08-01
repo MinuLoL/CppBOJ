@@ -4,46 +4,37 @@ using namespace std;
 int N;
 int arr[500][500];
 int d[500][500];
-int dparr[500];
 
-int dp(int x)
+
+int dp(int x,int y)//x는 갯수(N) y는 열  
 {
-	if(x==1)
-	{
-		d[0][0]=arr[0][0];
-		return d[0][0];
-	}
-	if(dparr[x]!=0)return dparr[x];
+	if(x==1)return arr[0][0];
+	if(d[x][y]!=0)return d[x][y];
 	else
 	{
-		for(int i=0;i<x;++i)
+		if(y==0)
 		{
-			if(i==0)
-			{
-				d[x-1][i]=d[x-2][0]+arr[x-1][i]; //d[][]가 저장안
-			}
-			else if(i==x-1)
-			{
-				d[x-1][i]=d[x-2][x-1]+arr[x-1][i];
-			}
-			else
-			{
-				int a,b;
-				a=arr[x-1][i]+d[x-2][i-1];
-				b=arr[x-1][i]+d[x-2][i];
-				d[x-1][i]=min(a,b);
-			}
+			return d[x-1][y]=dp(x-1,0)+arr[x-1][y]; //d[][]가 저장안
 		}
-		int maxnum=0;
-		for(int i=0;i<x;++i)
+		else if(y==x-1)
 		{
-			if(maxnum<d[x-1][i])
-				maxnum=d[x-1][i];
+			return d[x-1][y]=dp((x-1),(x-1))+arr[x-1][y];
 		}
-		return dparr[x]=maxnum;
+		else
+		{
+			int a,b;
+			a=arr[x-1][y]+dp((x-1),(y-1));
+			b=arr[x-1][y]+dp((x-1),(y));
+			return d[x-1][y]=min(a,b);
+		}
 	}
-	
-	
+//		int maxnum=0;
+//		for(int i=0;i<x;++i)
+//		{
+//			if(maxnum<d[x-1][i])
+//				maxnum=d[x-1][i];
+//		}
+//		return dparr[x]=maxnum;
 }
 
 
@@ -57,8 +48,16 @@ int main()
 			cin>>arr[i][j];
 		}
 	}
-	cout<<dp(N);
+	dp(1,0);
+	dp(2,0);
+	dp(2,1);
+	dp(3,0);
+	dp(3,1);
+	dp(3,2);
+
+
 	
+	cout<<dp(3,1);
 	
 	
 	
