@@ -6,7 +6,7 @@ int arr[500][500];
 int d[500][500];
 vector<int> v;
 
-int dp(int x,int y)//x는 갯수(N) y는 열  
+int dp(int x,int y)
 {
 	if(d[x][y]!=0)return d[x][y];
 	if(x==0)return arr[0][0];
@@ -14,7 +14,7 @@ int dp(int x,int y)//x는 갯수(N) y는 열
 	{
 		if(y==0)
 		{
-			return d[x][y]=dp(x-1,0)+arr[x][y]; //d[][]가 저장안
+			return d[x][y]=dp(x-1,0)+arr[x][y]; 
 		}
 		else if(y==x)
 		{
@@ -22,15 +22,10 @@ int dp(int x,int y)//x는 갯수(N) y는 열
 		}
 		else
 		{
-			int a,b;
-			a=arr[x][y]+dp((x-1),(y-1));
-			b=arr[x][y]+dp((x-1),(y));
-			return d[x][y]=max(a,b);
+			return d[x][y]=max(arr[x][y]+dp((x-1),(y-1)),arr[x][y]+dp((x-1),(y)));
 		}
 	}
-
 }
-
 
 int main()
 {
@@ -42,8 +37,6 @@ int main()
 			cin>>arr[i][j];
 		}
 	}
-
-
 	for(int i=0;i<N;++i)
 	{
 		for(int j=0;j<=i;++j)
