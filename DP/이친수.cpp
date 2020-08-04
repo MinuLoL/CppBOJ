@@ -1,11 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
-int d[90];
-int dp(int x)//Ãß°¡µÈ °¹¼ö 
+long long d[90];
+long long dp(int x)//ì¶”ê°€ëœ ê°¯ìˆ˜ 
 {
-	if(x==1)return 0;
-	if(x==2)return 1;
-	if(x==3)return 2;
+	if(x==0)return 0;
+	if(x==1)return 1;
 	if(d[x]!=0)return d[x];
 	else
 	{
@@ -17,11 +16,5 @@ int main()
 {
 	int N;
 	cin>>N;
-	
-	int ans=0;
-	for(int i=1;i<=N;++i)
-	{
-		ans+=dp(i);
-	}
-	cout<<ans;
+	cout<<dp(N); 
 }
