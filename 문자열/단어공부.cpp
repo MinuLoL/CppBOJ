@@ -1,54 +1,55 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int>alphanum(26);
 
 int main()
 {
-
-	char s[1000001];
-	cin>>s;
-//	for(int i=0;i<26;++i)
-//	{
-//		alphanum.push_back(0);
-//	}
-	for(int i=0;i<strlen(s);++i)
+	char word[1000001]; //대소문자로 구성된 알파벳
+	int alphaCnt[26]={0,}; //배열 원소 모두 0으로 초기화
+	int maxnum=0; 
+	int maxcnt=0;
+	int maxpos=0;
+	cin>>word;
+	int x=strlen(word); 
+	for(int i=0;i<x;++i) //100만번 돌아가야하니 시간초과 
 	{
 		int num;
-		if(s[i]<=90)
+		if(word[i]<=90) //대문자일경우 
 		{
-			num=s[i]-65;
+			num=word[i]-65;
 		}
-		else
+		else			//소문자일경우 
 		{
-			num=s[i]-97;
+			num=word[i]-97;
 		}
-		++alphanum[num];
+		++alphaCnt[num];
 	}
-	
-	
-	vector<int>::iterator iter;
-	iter=max_element(alphanum.begin(),alphanum.end());	
-	int maxnum=*iter;
-	
-	int n=count(alphanum.begin(),alphanum.end(),maxnum);
-	if(n>1)
+	for(int i=0;i<26;++i) //최대 갯수 찾기 
 	{
-		cout<<'?';
-		return 0;
-	}
-	int max=0;
-	int maxpos;
-	for(int i=0;i<alphanum.size();++i)
-	{
-		if(alphanum[i]>max)
+		if(alphaCnt[i]>maxnum)
 		{
-			max=alphanum[i];
+			maxnum=alphaCnt[i];
+		}
+	}
+	for(int i=0;i<26;++i)
+	{
+		if(alphaCnt[i]==maxnum)
+		{
+			maxcnt++;
 			maxpos=i;
 		}
+		
 	}
-	cout<<char(maxpos+65);
+	if(maxcnt>1)
+	{
+		cout<<"?";
+		return 0;
+	}
+	else
+	{
+		cout<<char(maxpos+65);
+	}
 	
 	
-	
+		
 }
