@@ -14,8 +14,7 @@ void dfs(int start,int end,int count){
 	for(int i=0;i<a[start].size();++i)
 	{
 		int x=a[start][i];
-		dfs(x,end,++count);
-		count--;
+		dfs(x,end,count+1);
 	}
 
 
