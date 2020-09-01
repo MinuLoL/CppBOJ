@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 int N,M;
-int ans=0;
-int imsi[100];
 char maps[100][100];
 int imap[100][100];
 int visited[100][100];
