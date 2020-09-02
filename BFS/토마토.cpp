@@ -5,10 +5,10 @@ int M,N;
 int maps[1000][1000];
 int visited[1000][1000];
 queue<pair<int,int> > q;
-//»óÇÏÁÂ¿ì ÀÌµ¿
+//ìƒí•˜ì¢Œìš° ì´ë™
 int dx[] = { 0,0,-1,1 };
 int dy[] = { 1,-1,0,0 };
-//NxM¹è¿­¾È¿¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+//NxMë°°ì—´ì•ˆì— ì¡´ìž¬í•˜ëŠ”ì§€ í™•ì¸
 bool isInMap(int y, int x){
 	return ((y >= 0 && y < N) && (x >= 0 && x < M));
 } 
@@ -35,12 +35,12 @@ void bfs(int y,int x){
 			int nx=x+dx[i];
 			if(isInMap(ny,nx)&&!visited[ny][nx]&&maps[ny][nx]==0)
 			{
-				visited[ny][nx]=visited[y][x]+1;           //Áß¿ä)ÃÖ´Ü°Å¸® ±¸ÇÏ´Â ½Ä
+				visited[ny][nx]=visited[y][x]+1;           //ì¤‘ìš”)ìµœë‹¨ê±°ë¦¬ êµ¬í•˜ëŠ” ì‹
 				q.push(make_pair(ny,nx));
 			}
 			else if(isInMap(ny,nx)&&com(visited[ny][nx],visited[y][x])&&maps[ny][nx]==0)
 			{
-				visited[ny][nx]=visited[y][x]+1;           //Áß¿ä)ÃÖ´Ü°Å¸® ±¸ÇÏ´Â ½Ä
+				visited[ny][nx]=visited[y][x]+1;           //ì¤‘ìš”)ìµœë‹¨ê±°ë¦¬ êµ¬í•˜ëŠ” ì‹
 				q.push(make_pair(ny,nx));
 			}
 			
@@ -94,6 +94,11 @@ int main()
 				maxnum=visited[i][j];
 			}
 		}
+	}
+	if(maxnum==0)
+	{
+		cout<<maxnum;
+		return 0;
 	}
 	cout<<maxnum-1;
 }
