@@ -6,10 +6,13 @@ int cnt=1;
 char maps[25][25];
 int imap[25][25];
 int visited[25][25];
+
+//상하좌우 이동
 int dx[] = { 0,0,-1,1 };
 int dy[] = { 1,-1,0,0 };
 vector<int>v;
  
+//NxN배열 안에 있는지 검사
 bool isInMap(int y,int x)
 {
 	return ((y >= 0 && y < N) && (x >= 0 && x < N));
