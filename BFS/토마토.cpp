@@ -7,10 +7,10 @@ queue<pair<int,int> > q;
 int maps[1001][1001];
 int visited[1001][1001];
 
-//»óÇÏÁÂ¿ì ÀÌµ¿
+//ìƒí•˜ì¢Œìš° ì´ë™
 int dx[] = { 0,0,-1,1 };
 int dy[] = { 1,-1,0,0 };
-//NxM¹è¿­¾È¿¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+//NxMë°°ì—´ì•ˆì— ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
 bool isInMap(int y, int x){
 	return ((y >= 0 && y < N) && (x >= 0 && x < M));
 } 
@@ -25,7 +25,7 @@ void bfs(void){
 			int nx=x+dx[i];
 			if(isInMap(ny,nx)&&!visited[ny][nx]&&maps[ny][nx]==0)
 			{
-				visited[ny][nx]=visited[y][x]+1;           //Áß¿ä)ÃÖ´Ü°Å¸® ±¸ÇÏ´Â ½Ä
+				visited[ny][nx]=visited[y][x]+1;           //ì¤‘ìš”)ìµœë‹¨ê±°ë¦¬ êµ¬í•˜ëŠ” ì‹
 				q.push(make_pair(ny,nx));
 			}
 		}
@@ -42,7 +42,7 @@ int main()
 			cin>>maps[i][j];
 			if(maps[i][j]==1)
 			{
-				q.push(make_pair(i,j));
+				q.push(make_pair(i,j)); //(STAR!!) 1ì¸ìœ„ì¹˜ì—ì„œ BFSíƒìƒ‰ì„ í•˜ê¸°ìœ„í•´ qì— ë„£ì–´ì¤Œ
 				visited[i][j]=1;
 			}
 		}
