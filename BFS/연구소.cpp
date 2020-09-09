@@ -9,17 +9,58 @@ vector<pair<int,int> > v;
 int c=0;
 vector<pair<int,int> > choice(8);
 int cnt;
-int min=0;
-
+int minnum=64;
+int visited[8][8];
+int dx[] = { 0,0,-1,1 };
+int dy[] = { 1,-1,0,0 };
+int realcnt;
+int twocnt=0;
+bool isInMap(int y,int x)
+{
+	return ((y >= 0 && y < N) && (x >= 0 && x < M));
+}
+bool check(int n)
+{
+	if(n==0)
+		return true;
+	else
+		return false;
+}
+void bfs(int y,int x)
+{
+	queue<pair<int,int> > q;
+	q.push(make_pair(y,x));
+	visited[y][x]=1;
+	
+	while(!q.empty()){
+		y=q.front().first;
+		x=q.front().second;
+		q.pop();
+		for(int i=0;i<4;++i)
+		{
+			int ny=y+dy[i];
+			int nx=x+dx[i];
+			if(isInMap(ny,nx)&&!visited[ny][nx]&&check(revmap[ny][nx]))
+			{
+				visited[ny][nx]=1;
+				realcnt++;
+				q.push(make_pair(ny,nx));
+			}
+		}
+	}
+}
 void init(void)
 {
+	realcnt=0;
 	for(int i=0;i<N;++i)
 	{
 		for(int j=0;j<M;++j)
 		{
-			revmap[i][j]=maps[i][j]l
+			revmap[i][j]=maps[i][j];
+			visited[i][j]=0;
 		}
 	}
+
 } 
 
 void comb(int number,int idx)
@@ -28,12 +69,12 @@ void comb(int number,int idx)
 	{
 		for(int i=0;i<3;++i)
 		{
-			cout<<"("<<choice[i].first<<" "<<choice[i].second<<")"<<" ";
+//			cout<<"("<<choice[i].first<<" "<<choice[i].second<<")"<<" ";
 			pos[c][i][0]=choice[i].first;
 			pos[c][i][1]=choice[i].second;
 		}
 		c++;
-		cout<<endl;
+//		cout<<endl;
 		
 		return;
 	}
@@ -58,12 +99,14 @@ int main()
 		for(int j=0;j<M;++j)
 		{
 			cin>>maps[i][j];
-			revmap[i][j]=mpas[i][j];
+			revmap[i][j]=maps[i][j];
 			if(maps[i][j]==0)
 			{
 				v.push_back(make_pair(i,j));
 				cnt++;
 			}
+			if(maps[i][j]==2)
+				twocnt++;
 		}
 	}
 	comb(0,0);
@@ -84,19 +127,40 @@ int main()
 		init();
 		for(int j=0;j<3;++j)
 		{
-			for(int k=0;k<2;++k)
-			{
-				revmap[pos[i][j][k]][pos[i][j][k]]=1;
-			}
+			
+			revmap[pos[i][j][0]][pos[i][j][1]]=1;
+			
 		}
 		//바이러스 위치인 2에서 BFS
 		
-		 
+//		for(int i=0;i<N;++i)
+//		{
+//			for(int j=0;j<M;++j)
+//			{
+//				cout<<revmap[i][j]<<" ";
+//			}
+//			cout<<endl;
+//		}
 		
+		for(int i=0;i<N;++i)
+		{
+			for(int j=0;j<M;++j)
+			{
+				if(!visited[i][j]&&revmap[i][j]==2)
+				{
+					realcnt++;
+					bfs(i,j);
+				}
+			}
+		}
+//		cout<<"!:"<<realcnt<<endl;
+		if(minnum>realcnt)
+		{
+			minnum=realcnt;
+		}
 		
 	}
-	
-	
+	cout<<cnt+twocnt-3-minnum;
 	
 	return 0;
 }
