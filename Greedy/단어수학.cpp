@@ -6,7 +6,7 @@ char words[10][9];
 int wordlen[10];
 int alphabet[26]={0,}; //A~Z
 int nums[10][9];
-
+int usedcnt[26]={0,}; 
 int multiten(int n)
 {
 	int retnum=1;
@@ -34,40 +34,48 @@ int main()
 			max=wordlen[i];
 		}
 	}
-	while(max>=0)
+	for(int i=0;i<N;++i)
 	{
-		for(int i=0;i<N;++i)
+		for(int j=0;j<strlen(words[i]);++j)
 		{
+			int k=(int)words[i][j]-65;
+			usedcnt[k]++;
+		}
+	}
+//	while(max>=0)
+//	{
+//		for(int i=0;i<N;++i)
+//		{
 //			cout<<"wordlen[i]:"<<wordlen[i]<<endl;
 //			cout<<"max:"<<max<<endl;
-			if(wordlen[i]==max)
-			{
+//			if(wordlen[i]==max)
+//			{
 //				cout<<"index:"<<i<<endl;
 //				cout<<"!"<<words[i][strlen(words[i])-max]<<endl;
-				int k=(int)words[i][strlen(words[i])-max]-65;
+//				int k=(int)words[i][strlen(words[i])-max]-65;
 //				cout<<"k:"<<k<<endl;
-				if(alphabet[k])
-				{
-					nums[i][strlen(words[i])-max]=alphabet[k];
-					wordlen[i]--;
-					continue;
-				}
-				alphabet[k]=inputnum;
-				
-				nums[i][strlen(words[i])-max]=inputnum;
-				wordlen[i]--;
-				inputnum--;
-
-			}
-		}
-		
-		max--;
-	}
-//	for(int i=0;i<26;++i)
-//	{
-//		cout<<alphabet[i]<<" ";
+//				if(alphabet[k])
+//				{
+//					nums[i][strlen(words[i])-max]=alphabet[k];
+//					wordlen[i]--;
+//					continue;
+//				}
+//				alphabet[k]=inputnum;
+//				
+//				nums[i][strlen(words[i])-max]=inputnum;
+//				wordlen[i]--;
+//				inputnum--;
+//
+//			}
+//		}
+//		
+//		max--;
 //	}
-//	cout<<endl;
+	for(int i=0;i<26;++i)
+	{
+		cout<<alphabet[i]<<" ";
+	}
+	cout<<endl;
 	
 //	for(int i=0;i<N;++i)
 //	{
