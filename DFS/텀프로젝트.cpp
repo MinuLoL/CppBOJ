@@ -4,9 +4,9 @@ using namespace std;
 
 int Testcase,n;
 int arr[MAX];
-bool visited[MAX];	//들렀던 수인지 확인 
-bool visited2[MAX];  //사이클이 앞에 몇개 두고 끊기는경우 
-int cntvisited[MAX];//끊겼을때 몇명이 한팀을 이룰수있는지 체크하기위해 
+bool visited[MAX]; 
+bool visited2[MAX];  
+int cntvisited[MAX];
 int firstnum;
 int nextn;
 int cnt;
