@@ -1,92 +1,60 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 #define MAX	100001
 
-int Testcase,n;
+int n;
 int arr[MAX];
-bool visited[MAX]; 
-bool visited2[MAX];  
-int cntvisited[MAX];
-int firstnum;
-int nextn;
+bool visited[MAX];
+bool pass[MAX];
 int cnt;
-int sum=0;
+vector<int>v;
 
-vector<int> sumv;
+void DFS(int num)
+{
+	visited[num]=true;
+	
+	int next=arr[num];
+	if(!visited[next])
+		DFS(next);
+	else if(!pass[next])
+	{
+		for(int i=next;i!=num;i=arr[i])
+			cnt++;
+		cnt++;
+	}
+	pass[num]=true;
+}
 
 void init()
 {
 	cnt=0;
+	memset(visited,false,sizeof(visited));
+	memset(pass,false,sizeof(pass));
 }
-
-int DFS(int x)
-{
-	if(visited2[x])
-	{
-		return cnt-cntvisited[x]+1;
-	}
-	if(visited[x])
-	{
-		return 0;
-	}
-	
-	visited[x]=true;
-	visited2[x]=true;
-	cnt++;
-	cntvisited[x]=cnt;
-	nextn=arr[x];
-	
-	if(nextn==firstnum)
-	{
-		return cnt;
-	}
-	else if(nextn==x)
-	{
-		return 1;
-	}
-	else if(nextn!=firstnum)
-	{
-		return DFS(nextn);
-	}
-	
-	
-}
-
 
 int main()
 {
+	int Testcase;
 	cin>>Testcase;
 	while(Testcase--)
 	{
-		sum=0;
-		
+		init();
 		cin>>n;
-		
 		for(int i=1;i<=n;++i)
 		{
 			cin>>arr[i];
 		}
 		for(int i=1;i<=n;++i)
 		{
-			if(visited[i])
-			{
-				continue;
-			}
-			firstnum=i;
-			init();
-			sum+=DFS(i);
-			memset(visited2,0,sizeof(visited2));
+			if(!visited[i])
+				DFS(i);
 		}
-		
-		sumv.push_back(n-sum);
-		memset(arr,0,sizeof(arr));
-		memset(visited,0,sizeof(visited));
+		v.push_back(n-cnt);
 	}
-	
-	for(int i=0;i<sumv.size();++i)
+	for(int i=0;i<v.size();++i)
 	{
-		cout<<sumv[i]<<'\n';
+		cout<<v[i]<<endl;
 	}
 	return 0;
 }
-
