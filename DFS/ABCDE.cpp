@@ -4,7 +4,6 @@ using namespace std;
 vector<int> v[2001];
 bool visited[2001]={0,};
 int N,M;
-int maxcnt=0;
 bool check;
 
 void dfs(int node,int cnt)
@@ -18,11 +17,6 @@ void dfs(int node,int cnt)
 		check=true;
 		return;
 	}
-	if(maxcnt<cnt)
-	{
-		maxcnt=cnt;
-	}
-	
 	for(int i=0;i<v[node].size();++i)
 	{
 		dfs(v[node][i],cnt+1);
