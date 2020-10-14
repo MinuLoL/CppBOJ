@@ -4,19 +4,19 @@ using namespace std;
 int M,N,H;
 queue<pair<pair<int,int>,int> > q;
 
-int maps[101][101][101];
+int maps[101][101][101];	//3dimension tomato 
 int visited[101][101][101];
 
-int dx[]={0,0,-1,1,0,0};
-int dy[]={1,-1,0,0,0,0};
-int dh[]={0,0,0,0,1,-1};
+int dx[]={0,0,-1,1,0,0};	//up,down,left,right,other dimension up,down
+int dy[]={1,-1,0,0,0,0};	//same
+int dh[]={0,0,0,0,1,-1};	//same
 
-bool isInMap(int y,int x,int h)
+bool isInMap(int y,int x,int h)	//check the position whether is in map
 {
 	return ((y>=0&&y<N)&&(x>=0&&x<M)&&(h>=0&&h<H));
 }
 
-void bfs(void)
+void bfs(void)		
 {
 	while(!q.empty())
 	{
