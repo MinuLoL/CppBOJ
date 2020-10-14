@@ -56,7 +56,9 @@ int main()
 			}
 		}
 	}
+	
 	bfs();
+	
 	for(int h=0;h<H;++h)
 	{
 		for(int i=0;i<N;++i)
@@ -69,7 +71,6 @@ int main()
 		}
 		cout<<endl;
 	}
-	
 	
 	int maxnum=0;
 	for(int h=0;h<H;++h)
@@ -97,5 +98,4 @@ int main()
 	}
 	cout<<maxnum-1;
 	return 0;
-	
 }
