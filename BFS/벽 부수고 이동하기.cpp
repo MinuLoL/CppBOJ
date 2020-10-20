@@ -16,7 +16,7 @@ bool isInMap(int y,int x)
 
 int bfs(int y,int x)
 {
-	queue<pair<pair<int,int>,pair<int,int> > > q;
+	queue<pair<pair<int,int>,pair<int,int> > > q;	//({y,x},{�� �μ� Ƚ��,���� �̵��� ĭ ��})
 	q.push(make_pair(make_pair(y,x),make_pair(0,1)));
 	visited[y][x][0]=true;
 	while(!q.empty())
@@ -30,7 +30,7 @@ int bfs(int y,int x)
 		{
 			return cnt;
 		}
-		
+		 
 		for(int i=0;i<4;++i)
 		{
 			int ny=y+dy[i];
@@ -38,12 +38,12 @@ int bfs(int y,int x)
 			
 			if(isInMap(ny,nx))
 			{
-				if(maps[ny][nx]==1&&Breakcnt==0)
+				if(maps[ny][nx]==1&&Breakcnt==0)//���� �̵��Ϸ��� ĭ�� ���̰� ���� �μ����̾����� 
 				{
 					visited[ny][nx][Breakcnt+1]=true;
 					q.push(make_pair(make_pair(ny,nx),make_pair(Breakcnt+1,cnt+1)));
 				}
-				else if(maps[ny][nx]==0&&visited[ny][nx][Breakcnt]==false)
+				else if(maps[ny][nx]==0&&visited[ny][nx][Breakcnt]==false)//���� �̵��Ϸ��� ĭ�� ��ĭ �϶� 
 				{
 					visited[ny][nx][Breakcnt]=true;
 					q.push(make_pair(make_pair(ny,nx),make_pair(Breakcnt,cnt+1)));
