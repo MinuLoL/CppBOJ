@@ -7,7 +7,7 @@ int dx[]={0,1,0,-1};
 char str[1001];
 int N,M;
 int maps[1001][1001];
-bool visited[1001][1001][2]={0,};
+bool visited[1001][1001][2]={0,};	//visited[y][x][ë²½ ë¶€ìˆœ íšŸìˆ˜]
 
 bool isInMap(int y,int x)
 {
@@ -16,7 +16,7 @@ bool isInMap(int y,int x)
 
 int bfs(int y,int x) 
 {
-	queue<pair<pair<int,int>,pair<int,int> > > q;	//({y,x},{º® ºÎ¼ø È½¼ö,ÇöÀç ÀÌµ¿ÇÑ Ä­ ¼ö})
+	queue<pair<pair<int,int>,pair<int,int> > > q;	//({y,x},{ë²½ ë¶€ìˆœ íšŸìˆ˜,í˜„ì¬ ì´ë™í•œ ì¹¸ ìˆ˜})
 	q.push(make_pair(make_pair(y,x),make_pair(0,1)));
 	visited[y][x][0]=true;
 	while(!q.empty())
@@ -38,12 +38,12 @@ int bfs(int y,int x)
 			
 			if(isInMap(ny,nx))
 			{
-				if(maps[ny][nx]==1&&Breakcnt==0)//´ÙÀ½ ÀÌµ¿ÇÏ·Á´Â Ä­ÀÌ º®ÀÌ°í ¾ÆÁ÷ ºÎ¼øÀûÀÌ¾øÀ¸¸é 
+				if(maps[ny][nx]==1&&Breakcnt==0)//ë‹¤ìŒ ì´ë™í•˜ë ¤ëŠ” ì¹¸ì´ ë²½ì´ê³  ì•„ì§ ë¶€ìˆœì ì´ì—†ìœ¼ë©´ 
 				{
 					visited[ny][nx][Breakcnt+1]=true;
 					q.push(make_pair(make_pair(ny,nx),make_pair(Breakcnt+1,cnt+1)));
 				}
-				else if(maps[ny][nx]==0&&visited[ny][nx][Breakcnt]==false)//´ÙÀ½ ÀÌµ¿ÇÏ·Á´Â Ä­ÀÌ ºóÄ­ ÀÏ¶§ 
+				else if(maps[ny][nx]==0&&visited[ny][nx][Breakcnt]==false)//ë‹¤ìŒ ì´ë™í•˜ë ¤ëŠ” ì¹¸ì´ ë¹ˆì¹¸ ì¼ë•Œ 
 				{
 					visited[ny][nx][Breakcnt]=true;
 					q.push(make_pair(make_pair(ny,nx),make_pair(Breakcnt,cnt+1)));
