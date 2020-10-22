@@ -11,7 +11,7 @@ int gravCnt=0;
 int bfs(int ry,int rx,int by,int bx)
 {
 	queue<pair<pair<pair<int,int>,pair<int,int> >,int> > q;	//(Ry,Rx),(By,Bx)
-	q.push(make_pair(make_pair(make_pair(ry,rx),make_pair((by,bx))),0);
+	q.push(make_pair(make_pair(make_pair(ry,rx),make_pair(by,bx)),0));
 	
 	while(!q.empty())
 	{
