@@ -53,6 +53,8 @@ int main()
 //	cout<<"Rpos:"<<Ry<<" "<<Rx<<endl;
 //	cout<<"Bpos:"<<By<<" "<<Bx<<endl;
 //	cout<<"Opos:"<<Oy<<" "<<Ox<<endl;
+	cout<<bfs(Ry,Rx,By,Bx);
+	return 0;
 	
 }
 
