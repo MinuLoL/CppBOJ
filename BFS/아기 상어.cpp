@@ -3,9 +3,11 @@ using namespace std;
 
 int N,M;
 int maps[20][20];
-int visited[20][20]; 
+int visited[20][20]={0,};
 int SharkSize=2;
 int sizecnt=0;
+int sharkposY;
+int sharkposX;
 
 int dy[]={1,0,-1,0};
 int dx[]={0,1,0,-1};
@@ -16,7 +18,7 @@ bool isInMap(int y,int x)	//checking in maps
 }
 bool possiblepass(int y,int x)	//checking Shark can pass  
 {
-	return	maps[y][x]<SharkSize;
+	return	maps[y][x]<=SharkSize;
 }
 
 void bfs(int y,int x)
@@ -33,7 +35,7 @@ void bfs(int y,int x)
 		{
 			int ny=y+dy[i];
 			int nx=x+dx[i];
-			if(isInMap(ny,nx)&&possiblepass(ny,nx))
+			if(isInMap(ny,nx)&&possiblepass(ny,nx)&&!visited[ny][nx])
 			{
 				visited[ny][nx]=visited[y][x]+1;
 				q.push(make_pair(ny,nx));
@@ -51,8 +53,27 @@ int main()
 		for(int j=0;j<N;++j)
 		{
 			cin>>maps[i][j];
+			if(maps[i][j]==9)
+			{
+				sharkposY=i;
+				sharkposX=j;
+			}
 		}
+	}
+	bfs(sharkposY,sharkposX);
+	for(int i=0;i<N;++i)
+	{
+		for(int j=0;j<N;++j)
+		{
+			cout<<visited[i][j];
+		}
+		cout<<endl;
 	}
 	
 
 }
+
+//2020.10.27	bfs완료
+//크기가 2인 상어가 1인 물고기가 있는 위치로 이동해야함
+ 
+
