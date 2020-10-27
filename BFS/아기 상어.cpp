@@ -69,6 +69,8 @@ int main()
 		}
 		cout<<endl;
 	}
+	memset(visited,0,sizeof(visited));
+	 
 	
 
 }
