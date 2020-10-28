@@ -40,8 +40,7 @@ void bfs(int y,int x)
 				visited[ny][nx]=visited[y][x]+1;
 				q.push(make_pair(ny,nx));
 			}
-		}
-		
+		}	
 	}
 }
 
@@ -60,15 +59,17 @@ int main()
 			}
 		}
 	}
-	bfs(sharkposY,sharkposX);
-	for(int i=0;i<N;++i)
-	{
-		for(int j=0;j<N;++j)
-		{
-			cout<<visited[i][j];
-		}
-		cout<<endl;
-	}
+	bfs(sharkposY,sharkposX);//현재 위치에서 이동할 수 있는 경로
+	//몸무게가 1인 위치를 찾아서 이동해야함
+	 
+//	for(int i=0;i<N;++i)
+//	{
+//		for(int j=0;j<N;++j)
+//		{
+//			cout<<visited[i][j];
+//		}
+//		cout<<endl;
+//	}
 	memset(visited,0,sizeof(visited));
 	 
 	
